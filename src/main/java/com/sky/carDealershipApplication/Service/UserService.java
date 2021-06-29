@@ -16,10 +16,8 @@ public class UserService {
     public void create(User user) {
         userRepository.save(user);
     }
-
-
+    
     public Optional<User> retrieveOne(int userId) {
-
         return userRepository.findById(userId);
     }
 

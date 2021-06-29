@@ -33,11 +33,10 @@ public class BookingController {
         Car carFromDb = carService.retrieveOne(booking.getCar().getCarId()).get();
         User userFromDb = userService.retrieveOne(booking.getUser().getUserId()).get();
         Optional<Booking> bookingRequired = bookingService.create(userFromDb, carFromDb);
-
         if(bookingRequired.get().getBookingId() != 0) {
-            return new ResponseEntity<>("A booking has been confirmed with id :" + bookingRequired.get().getBookingId() + "." , HttpStatus.OK);
+            return new ResponseEntity<>("A booking has been confirmed with id :" + bookingRequired.get().getBookingId() + " has been confirmed for " + bookingRequired.get().getUser().getFirstName() + " at " + bookingRequired.get().getTimeBooked() , HttpStatus.OK);
         } else{
-            return new ResponseEntity<>("Unsuccessful in creating a booking", HttpStatus.OK);
+            return new ResponseEntity<>("Unsuccessful in creating a booking. " + carFromDb.getName() + " is unavailable"   , HttpStatus.OK);
         }
     }
 
@@ -47,11 +46,10 @@ public class BookingController {
         Optional<Booking> bookingFromDb = bookingService.retrieveOne(bookingId);
         if(bookingFromDb.isPresent()){
             bookingService.cancel(bookingFromDb.get());
-            return new ResponseEntity<>("The booking has been canceled", HttpStatus.OK);
+            return new ResponseEntity<>("The booking with booking id " + bookingFromDb.get().getBookingId() + " has been canceled", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Booking with this booking not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Booking with this booking id not found", HttpStatus.NOT_FOUND);
         }
-
     }
 
 

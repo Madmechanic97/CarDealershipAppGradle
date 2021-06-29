@@ -5,15 +5,18 @@ import com.sky.carDealershipApplication.Models.User;
 import com.sky.carDealershipApplication.Service.CarService;
 import com.sky.carDealershipApplication.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@EnableAutoConfiguration
 public class LoginController {
 
     @Autowired
@@ -22,6 +25,7 @@ public class LoginController {
     @Autowired
     private CarService carService;
 
+    @ResponseBody
     @GetMapping("/Login")
     public ResponseEntity<?> userLogin(@RequestParam String email){
         User userFromDb = userService.checkUserEmail(email);

@@ -2,7 +2,6 @@ package com.sky.carDealershipApplication.Controller;
 
 import com.sky.carDealershipApplication.Models.Car;
 import com.sky.carDealershipApplication.Service.CarService;
-import com.sky.carDealershipApplication.enums.OrderEnums;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
@@ -23,8 +22,8 @@ public class CarController {
     Comparator<Car> mileageComparator;
 
     @ResponseBody
-    @GetMapping("/searchCarsByBrand/{brand}/{field}/{ascending}")
-    public ResponseEntity<?> retrieveCarsByBrand(@PathVariable String brand, @PathVariable String field, @PathVariable String ascending) {
+    @GetMapping("/searchCarsByBrand")
+    public ResponseEntity<?> retrieveCarsByBrand(@RequestParam String brand, @RequestParam String field, @RequestParam String ascending) {
         List<Car> carListWithName = carService.findCarsByBrand(brand);
         List<Car> carListToReturn;
 
@@ -66,66 +65,10 @@ public class CarController {
             Collections.sort(carListToReturn, nameComparator);
             Collections.reverse(carListToReturn);
             return new ResponseEntity<>(carListToReturn, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(carListToReturn, HttpStatus.OK);
         }
-    return null;
 
     }
-
-
-
-//    @ResponseBody
-//    @GetMapping("/sortCars/year/{ascending}")
-//    public ResponseEntity<?> sortCarsByYear(@PathVariable String ascending){
-//
-//        if(ascending.equalsIgnoreCase("true")) {
-//            return new ResponseEntity<>(carService.sortByYearAsc(), HttpStatus.OK);
-//        } else if(ascending.equalsIgnoreCase("false")) {
-//            return new ResponseEntity<>(carService.sortByYearDesc(), HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>("Ascending is true or false?", HttpStatus.OK);
-//        }
-//    }
-
-//    @ResponseBody
-//    @GetMapping("/sortCars/price/{ascending}")
-//    public ResponseEntity<?> sortCarsByPrice(@PathVariable String ascending){
-//
-//        if(ascending.equalsIgnoreCase("true")) {
-//            return new ResponseEntity<>(carService.sortByPriceAsc(), HttpStatus.OK);
-//        } else if(ascending.equalsIgnoreCase("false")) {
-//            return new ResponseEntity<>(carService.sortByPriceDesc(), HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>("Ascending is true or false?", HttpStatus.OK);
-//        }
-//    }
-//
-//    @ResponseBody
-//    @GetMapping("/sortCars/mileage/{ascending}")
-//    public ResponseEntity<?> sortCarsByMileage(@PathVariable String ascending){
-//
-//        if(ascending.equalsIgnoreCase("true")) {
-//            return new ResponseEntity<>(carService.sortByMileageAsc(), HttpStatus.OK);
-//        } else if(ascending.equalsIgnoreCase("false")) {
-//            return new ResponseEntity<>(carService.sortByMileageDesc(), HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>("Ascending is true or false?", HttpStatus.OK);
-//        }
-//    }
-//
-//    @ResponseBody
-//    @GetMapping("/sortCars/brand/{ascending}")
-//    public ResponseEntity<?> sortCarsByBrand(@PathVariable String ascending){
-//
-//        if(ascending.equalsIgnoreCase("true")) {
-//            return new ResponseEntity<>(carService.sortByBrandAsc(), HttpStatus.OK);
-//        } else if(ascending.equalsIgnoreCase("false")) {
-//            return new ResponseEntity<>(carService.sortByBrandDesc(), HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>("Ascending is true or false?", HttpStatus.OK);
-//        }
-//    }
-
-
-
 
 }

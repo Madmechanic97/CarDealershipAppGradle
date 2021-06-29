@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -13,8 +14,7 @@ public class Booking {
     @SequenceGenerator(name = "booking_gen", sequenceName = "booking_seq")
     private int bookingId;
 
-//    @DateTimeFormat(pattern = "yyyy-MM-dd")
-//    private LocalDateTime timeStamp;
+    private Date timeBooked;
 
     @OneToOne
     private Car car;
@@ -29,6 +29,7 @@ public class Booking {
     public Booking(User user, Car car) {
         this.car = car;
         this.user = user;
+        this.timeBooked = new Date();
     }
 
     public User getUser() {
@@ -47,14 +48,6 @@ public class Booking {
         this.bookingId = bookingId;
     }
 
-//    public LocalDateTime getTimeStamp() {
-//        return timeStamp;
-//    }
-//
-//    public void setTimeStamp(LocalDateTime timeStamp) {
-//        this.timeStamp = timeStamp;
-//    }
-
     public Car getCar() {
         return car;
     }
@@ -63,26 +56,21 @@ public class Booking {
         this.car = car;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Booking booking = (Booking) o;
-//        return bookingId == booking.bookingId && timeStamp.equals(booking.timeStamp) && car.equals(booking.car);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(bookingId, timeStamp, car);
-//    }
+    public Date getTimeBooked() {
+        return timeBooked;
+    }
 
+    public void setTimeBooked(Date timeBooked) {
+        this.timeBooked = timeBooked;
+    }
 
-//    @Override
-//    public String toString() {
-//        return "Booking{" +
-//                "bookingId=" + bookingId +
-//                ", timeStamp=" + timeStamp +
-//                ", car=" + car +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "bookingId=" + bookingId +
+                ", timeBooked=" + timeBooked +
+                ", car=" + car +
+                ", user=" + user +
+                '}';
+    }
 }

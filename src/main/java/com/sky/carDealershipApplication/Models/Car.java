@@ -12,10 +12,8 @@ public class Car {
 
     private int year;
     private double price;
-    @Column(name="name")
     private String name;
     private int mileage;
-    @Column(name="brand")
     private String brand;
     private Boolean availability;
 

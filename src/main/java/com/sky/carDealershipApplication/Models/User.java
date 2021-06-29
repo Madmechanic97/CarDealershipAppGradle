@@ -10,12 +10,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_gen")
     @SequenceGenerator(name = "user_gen", sequenceName = "user_seq", allocationSize = 1)
     private int userId;
-
-    @Column (name="firstName")
     private String firstName;
-    @Column (name="lastName")
     private String lastName;
-    @Column (name="email")
     private String email;
 
     public User() {

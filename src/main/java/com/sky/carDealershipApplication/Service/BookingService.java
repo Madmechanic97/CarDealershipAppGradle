@@ -14,10 +14,9 @@ import java.util.Optional;
 @Service
 public class BookingService {
 
-    private List<Car> listOfAvailableCars = new ArrayList<Car>();
-
     @Autowired
     private BookingRepository bookingRepository;
+
     public Optional<Booking> create(User user, Car car){
         if(!car.getAvailability()){
             return Optional.of(new Booking(user, car));
@@ -25,7 +24,6 @@ public class BookingService {
             car.setAvailability(false);
             return Optional.of(bookingRepository.save(new Booking(user, car)));
         }
-
     }
 
     public Optional<Booking> retrieveOne(int bookingId) {

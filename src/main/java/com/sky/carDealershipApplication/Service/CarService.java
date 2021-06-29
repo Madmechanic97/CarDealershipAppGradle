@@ -18,44 +18,9 @@ public class CarService {
     public List<Car> findCarsByBrand(String brand) {
         return carRepository.findByBrand(brand);
     }
-
     public List<Car> retrieveAllCars() {
         return (List<Car>) carRepository.findAll();
     }
-
-    public List<Car> sortByYearAsc() {
-        return carRepository.findByOrderByYearAsc();
-    }
-
-    public List<Car> sortByYearDesc() {
-        return carRepository.findByOrderByYearDesc();
-    }
-
-    public List<Car> sortByPriceAsc(){
-        return carRepository.findByOrderByPriceAsc();
-    }
-
-    public List<Car> sortByPriceDesc(){
-        return carRepository.findByOrderByPriceDesc();
-
-    }
-
-    public List<Car> sortByMileageAsc(){
-        return carRepository.findByOrderByMileageAsc();
-    }
-
-    public List<Car> sortByMileageDesc(){
-        return carRepository.findByOrderByMileageDesc();
-    }
-
-    public List<Car> sortByBrandAsc(){
-        return carRepository.findByOrderByBrandAsc();
-    }
-
-    public List<Car> sortByBrandDesc(){
-        return carRepository.findByOrderByBrandDesc();
-    }
-
     public Optional<Car> retrieveOne(int carId) {
         return carRepository.findById(carId);
     }
