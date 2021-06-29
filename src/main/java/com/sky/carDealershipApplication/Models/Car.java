@@ -12,18 +12,32 @@ public class Car {
 
     private int year;
     private double price;
+    @Column(name="name")
     private String name;
     private int mileage;
+    @Column(name="brand")
+    private String brand;
+    private Boolean availability;
 
     public Car(){
         super();
     }
 
-    public Car(int year, double price, String name, int mileage) {
+    public Car(int year, double price, String name, int mileage, String brand, boolean availability) {
         this.year = year;
         this.price = price;
         this.name = name;
         this.mileage = mileage;
+        this.brand = brand;
+        this.availability = availability;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public int getCarId() {
@@ -66,14 +80,11 @@ public class Car {
         this.mileage = mileage;
     }
 
-    @Override
-    public String toString() {
-        return "Car{" +
-                "carId=" + carId +
-                ", year=" + year +
-                ", price=" + price +
-                ", name='" + name + '\'' +
-                ", mileage=" + mileage +
-                '}';
+    public Boolean getAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(Boolean availability) {
+        this.availability = availability;
     }
 }

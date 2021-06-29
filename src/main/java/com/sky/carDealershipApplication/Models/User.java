@@ -8,25 +8,24 @@ import java.util.Objects;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_gen")
-    @SequenceGenerator(name = "user_gen", sequenceName = "user_seq")
+    @SequenceGenerator(name = "user_gen", sequenceName = "user_seq", allocationSize = 1)
     private int userId;
 
+    @Column (name="firstName")
     private String firstName;
+    @Column (name="lastName")
     private String lastName;
+    @Column (name="email")
     private String email;
 
-    @OneToMany
-    private List<Booking> bookingList;
-
-    public User(){
-        super();
+    public User() {
+    super();
     }
 
-    public User(String firstName, String lastName, String email, List<Booking> bookingList) {
+    public User(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.bookingList = bookingList;
     }
 
     public int getUserId() {
@@ -59,38 +58,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public List<Booking> getBookingList() {
-        return bookingList;
-    }
-
-    public void setBookingList(List<Booking> bookingList) {
-        this.bookingList = bookingList;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return userId == user.userId && firstName.equals(user.firstName) && lastName.equals(user.lastName) && email.equals(user.email) && bookingList.equals(user.bookingList);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(userId, firstName, lastName, email, bookingList);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", bookingList=" + bookingList +
-                '}';
     }
 
 }

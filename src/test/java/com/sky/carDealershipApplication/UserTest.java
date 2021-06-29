@@ -26,7 +26,7 @@ class UserTests {
 
     @BeforeEach
     public void setup(){
-        user = new User("Abdullah", "Tariq", "atariq@hotmail.com", new ArrayList<>());
+       //user = new User("Abdullah", "Tariq", "atariq@hotmail.com", new ArrayList<>());
 
     }
 

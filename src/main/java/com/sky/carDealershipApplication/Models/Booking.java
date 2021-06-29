@@ -13,19 +13,30 @@ public class Booking {
     @SequenceGenerator(name = "booking_gen", sequenceName = "booking_seq")
     private int bookingId;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime timeStamp;
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
+//    private LocalDateTime timeStamp;
 
     @OneToOne
     private Car car;
+
+    @ManyToOne
+    private User user;
 
     public Booking(){
         super();
     }
 
-    public Booking(LocalDateTime timeStamp, Car car) {
-        this.timeStamp = timeStamp;
+    public Booking(User user, Car car) {
         this.car = car;
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getBookingId() {
@@ -36,13 +47,13 @@ public class Booking {
         this.bookingId = bookingId;
     }
 
-    public LocalDateTime getTimeStamp() {
-        return timeStamp;
-    }
-
-    public void setTimeStamp(LocalDateTime timeStamp) {
-        this.timeStamp = timeStamp;
-    }
+//    public LocalDateTime getTimeStamp() {
+//        return timeStamp;
+//    }
+//
+//    public void setTimeStamp(LocalDateTime timeStamp) {
+//        this.timeStamp = timeStamp;
+//    }
 
     public Car getCar() {
         return car;
@@ -52,26 +63,26 @@ public class Booking {
         this.car = car;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Booking booking = (Booking) o;
-        return bookingId == booking.bookingId && timeStamp.equals(booking.timeStamp) && car.equals(booking.car);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Booking booking = (Booking) o;
+//        return bookingId == booking.bookingId && timeStamp.equals(booking.timeStamp) && car.equals(booking.car);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(bookingId, timeStamp, car);
+//    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(bookingId, timeStamp, car);
-    }
 
-
-    @Override
-    public String toString() {
-        return "Booking{" +
-                "bookingId=" + bookingId +
-                ", timeStamp=" + timeStamp +
-                ", car=" + car +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Booking{" +
+//                "bookingId=" + bookingId +
+//                ", timeStamp=" + timeStamp +
+//                ", car=" + car +
+//                '}';
+//    }
 }

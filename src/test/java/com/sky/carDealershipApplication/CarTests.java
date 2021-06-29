@@ -13,7 +13,7 @@ public class CarTests {
     @Autowired
     private CarService carService;
 
-    @Test
-    public void test_ThatACarCanBePersisted()
+    //@Test
+    //public void test_ThatACarCanBePersisted()
 
 }
